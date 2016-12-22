@@ -1,6 +1,7 @@
 #include <iostream>
 #include<string>
 #include<fstream>
+#include<math.h>
 using namespace std;
 class readwav
 {
@@ -100,10 +101,60 @@ public:
 	}
 	
 };
+void fft(double* in, int n)
+{
+	int L = 1; //蝶形运算层数
+	while (n = n >> 1)
+		L++;
+	int len = 1 << L;// 将输入的一维数组对齐为 N=2^L
+	int N; // 需要的扩充后的长度
+	double* expand;// 如果需要 指向扩充后的数组
+	if (n * 2 == len)
+		L -= 1;
+	else if (n < len)
+	{
+		N = len; // 需要的扩充后的长度
+		expand = new double[N]; // 扩充后的数组
+		memset(expand, 0, sizeof(double)*N);
+		memcpy(expand, in, sizeof(double)*n);// 把之前数组里的数据复制过来
+	}
+	double* exchange = new double[N];  // 用作临时交换的数组
+	for (int i = 0; i < N; i++)
+	{
+		int p = 0;
+		for (int j = 0; j < L; j++)
+			if (i&(1 << j))
+				p += 1 << (L - j - 1);
+		exchange[i] = expand[p];
+	}
+	memcpy(expand, exchange, sizeof(double)*N);// 将交换后的数据复制到expand中
+	delete[]exchange;
+	exchange = NULL;
+	//------旋转因子----------------
+	double* W = new double[N / 2];
+	memset(W, 0, sizeof(double)*N / 2);// 给出旋转因子数组 并置0
+	for (int i = 0; i < N / 2; i++)
+		W[i] = double(cos(-2.0*3.1415926*i / N));
+	//--------FFT算法--------------
+	for (int i = 0; i < L; i++) // 蝶形运算层数
+	{
+		int G = 1 << (L - i);
+		int num = 1 << i; // 每组元素个数
+		for(int j=0;j<num;j++)
+			for (int k = 0; k < G; k++) //每层的组数
+			{
+				double x1 = expand[k*num + j];
+				double x2 = expand[(k + 1)*num + j];
+				expand[k*num + j] = x1 + W[j*(1 << (L - i - 1))] * x2;
+				expand[(k + 1)*num + j] = x1 - W[j*(1 << (L - i - 1))] * x2;
+			}
+	}
+
+}
 int main()
 {
 	readwav read("test1.wav");
-	read.disp();
+	//read.disp();
 	system("pause");
 	
 }
