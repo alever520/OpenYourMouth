@@ -18,5 +18,13 @@
     <ClCompile Include="readwav.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
+    <ClCompile Include="fft.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="fft.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
