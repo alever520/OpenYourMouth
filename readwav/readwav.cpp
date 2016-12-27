@@ -136,6 +136,7 @@ void my_dft(double* in,double* out, int n,int m)
 {
 	double sum = 0; // 记录一次dft的总幅值
 	double count = 0; // 记录前m个点的和
+	double type = 0;  // 记录比值 作为判断标准
 	my_complex* temp = new my_complex[n];
 	memset(temp, 0, sizeof(my_complex)*n);
 	for (int i = 0; i < n; i++)
@@ -151,37 +152,48 @@ void my_dft(double* in,double* out, int n,int m)
 			count += out[i];
 		
 	}
-	cout << "sum:" << sum << " count:" << count << endl;
+	cout << "sum:" << sum << "  count:" << count;
+	cout << "  比值:" << count / sum ;
+	if (count / sum > 0.3&&count/sum<0.4)
+		cout << "  type: 1" << endl;
+	else
+		cout << "  type: 0" << endl;
 	delete[] temp;
 	temp = NULL;
 }
-int main()
+void dft_disp(double* data,int L, int n, int m)
 {
-	readwav read("test3.wav");
-	int length = read.getlength();// data数据的长度，是文件内data部分的一半
-	int freq = read.getfrequency();// wav文件的采样频率
-	double T = 0.02; // 给出做变换的采样周期 则频率间隔为1/T
-	int n = T*freq; // 每次变换的点数
-	int L = length / n; //变换的轮次数
-	int m = 1000 * T;
-	double* data = read.disp();
+	double time = 0.02;
 	for (int i = 0; i < L; i++)
 	{
 		double* data_test = new double[n];
 		for (int j = 0; j < n; j++)
 		{
-			data_test[j] = data[j+i*n];
+			data_test[j] = data[j + i*n];
 			//cout << data_test[i] << endl;	
 		}
 		// 注意用 new 构造的空间一定要初始化
 		double* out = new double[n];
 		memset(out, 0, sizeof(double) * n);
+		cout << "time: " << time*i << "s ";
 		my_dft(data_test, out, n, m);
 		delete[] data_test;
 		data_test = NULL;
 		delete[] out;
 		out = NULL;
 	}
+}
+int main()
+{
+	readwav read("test2.wav");
+	int length = read.getlength();// data数据的长度，是文件内data部分的一半
+	int freq = read.getfrequency();// wav文件的采样频率
+	double T = 0.02; // 给出做变换的采样周期 则频率间隔为1/T
+	int n = T*freq; // 每次变换的点数
+	int L = length / n; //变换的轮次数
+	int m = 3000 * T;
+	double* data = read.disp();
+	dft_disp(data, L, n, m);
 	//cout << "------------------" << endl;
 	//for (int i = 0; i < 10; i++)
 	//{
