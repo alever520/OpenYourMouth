@@ -110,11 +110,21 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="dft.cpp" />
     <ClCompile Include="fft.cpp" />
+    <ClCompile Include="hamming window.cpp" />
+    <ClCompile Include="main.cpp" />
+    <ClCompile Include="time_piece.cpp" />
     <ClCompile Include="readwav.cpp" />
+    <ClCompile Include="recognize.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="dft.h" />
     <ClInclude Include="fft.h" />
+    <ClInclude Include="hamming window.h" />
+    <ClInclude Include="readwav.h" />
+    <ClInclude Include="recognize.h" />
+    <ClInclude Include="time_piece.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

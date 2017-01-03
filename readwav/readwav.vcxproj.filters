@@ -21,9 +21,39 @@
     <ClCompile Include="fft.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
+    <ClCompile Include="dft.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="main.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="recognize.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="time_piece.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="hamming window.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="fft.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="dft.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="readwav.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="recognize.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="time_piece.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="hamming window.h">
       <Filter>头文件</Filter>
     </ClInclude>
   </ItemGroup>
