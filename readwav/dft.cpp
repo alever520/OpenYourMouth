@@ -12,6 +12,7 @@ bool my_dft(double* in, int n, int m)
 	double type = 0;  // 记录比值 作为判断标准
 	my_complex* temp = new my_complex[n];
 	memset(temp, 0, sizeof(my_complex)*n);
+	hamming(in, n);
 	for (int i = 0; i < n; i++)
 	{
 		for (int j = 0; j < n; j++)
@@ -22,16 +23,16 @@ bool my_dft(double* in, int n, int m)
 		int t = sqrt(temp[i].re*temp[i].re + temp[i].im*temp[i].im);
 		// 求此帧的能量和
 		sum += t;
-		// 求此帧的前3000hz的能量和
+		// 求此帧的前m个点的能量和 对应的频率为m*50hz
 		if (i <= m)
 			count += t;
 
 	}
 	//cout << "sum:" << sum << "  count:" << count;
-	//cout << "  比值:" << count / sum;
+	cout << "  比值:" << count / sum;
 	delete[] temp;
 	temp = NULL;
-	if (count / sum > 0.3)
+	if (count / sum > 0.2)
 		return true;
 	else
 		return false;

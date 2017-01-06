@@ -9,7 +9,7 @@ void recognize(double* data, double T, int freq, int length)
 {
 	int n = T*freq; // 每次变换的点数
 	int L = length / n; //变换的轮次数 也就是要做dft的片段数
-	int m = 3000 * T;
+	int m = 2000 * T;
 	for (int i = 0; i < L; i++)
 	{
 		double* data_test = new double[n];
@@ -22,7 +22,7 @@ void recognize(double* data, double T, int freq, int length)
 		//double* out = new double[n];
 		//memset(out, 0, sizeof(double) * n);
 		cout << "time: " << T*i << "s ";
-		if (my_dft(data_test, n, m) && time_piece(data_test, n))
+		if (time_piece(data_test, n) && my_dft(data_test, n, m) )
 			cout << "type: 1 " << endl;
 		else
 			cout << "type: 0" << endl;
