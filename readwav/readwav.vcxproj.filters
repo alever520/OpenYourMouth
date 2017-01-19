@@ -36,6 +36,9 @@
     <ClCompile Include="hamming window.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
+    <ClCompile Include="filtering.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="fft.h">
@@ -54,6 +57,9 @@
       <Filter>头文件</Filter>
     </ClInclude>
     <ClInclude Include="hamming window.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="filtering.h">
       <Filter>头文件</Filter>
     </ClInclude>
   </ItemGroup>

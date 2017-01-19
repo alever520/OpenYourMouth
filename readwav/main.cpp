@@ -6,7 +6,7 @@
 using namespace std;
 int main()
 {
-	readwav read("test3.wav");
+	readwav read("test2.wav");
 	int length = read.getlength();// data数据的长度，是文件内data部分的一半
 	int freq = read.getfrequency();// wav文件的采样频率
 	double T = 0.02; // 给出做变换的采样周期 则频率间隔为1/T

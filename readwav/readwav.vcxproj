@@ -112,6 +112,7 @@
   <ItemGroup>
     <ClCompile Include="dft.cpp" />
     <ClCompile Include="fft.cpp" />
+    <ClCompile Include="filtering.cpp" />
     <ClCompile Include="hamming window.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="time_piece.cpp" />
@@ -121,6 +122,7 @@
   <ItemGroup>
     <ClInclude Include="dft.h" />
     <ClInclude Include="fft.h" />
+    <ClInclude Include="filtering.h" />
     <ClInclude Include="hamming window.h" />
     <ClInclude Include="readwav.h" />
     <ClInclude Include="recognize.h" />
