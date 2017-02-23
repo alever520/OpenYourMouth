@@ -21,11 +21,22 @@ int main()
 	//{
 	//	cout << out[i] << endl;
 	//}
-	double srcdata[] = { 3.21,3.31,3.41,3.51,3.61,3.71,3.81 };
-	double* outdata = new double[7];
-	wavelet(srcdata, outdata, 7);
-	for (int i = 0; i < 7; i++)
-		cout << outdata[i] << ' ';
-	system("pause");
+	double srcdata[] = { 420.2,423.53,423.52,423.35,424.52,428,430.79,428.92 };
+	//double* outdata = new double[7];
+	double* det = new double[5];
+	double* app = new double[5];
+	wavelet a;
+	a.wavedec(srcdata, 8, det, app);
+	double* outdata = new double[8];
+	a.waverec(det, app, 5, outdata);
+	for (int i = 0; i < 8; i++)
+	{
+		cout << "outdata: " << outdata[i];
+	}
 
+	//for (int i = 0; i < 7; i++)
+	//	cout << outdata[i] << endl;
+	
+	system("pause");
+	//delete[] outdata;
 }
