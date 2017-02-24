@@ -21,17 +21,23 @@ int main()
 	//{
 	//	cout << out[i] << endl;
 	//}
-	double srcdata[] = { 420.2,423.53,423.52,423.35,424.52,428,430.79,428.92 };
-	//double* outdata = new double[7];
-	double* det = new double[5];
-	double* app = new double[5];
+	readwav clc("7577.wav");
+	int length = 1000;
+	//int length = clc.getlength();
+	double* srcdata = clc.disp();
+	//double srcdata[] = { 420.2,423.53,423.52,423.35,424.52,428,430.79,428.92 };
+	double* det = new double[(length + 4 - 1) / 2];
+	double* app = new double[(length + 4 - 1) / 2];
 	wavelet a;
-	a.wavedec(srcdata, 8, det, app);
-	double* outdata = new double[8];
-	a.waverec(det, app, 5, outdata);
-	for (int i = 0; i < 8; i++)
+	a.wavedec(srcdata, length, det, app);
+	double* outdata = new double[length];
+	a.wavecle(det, (length + 4 - 1) / 2);
+	//cout << a.getT(det, 5) << endl;
+	a.waverec(det, app, (length + 4 - 1) / 2, outdata);
+	cout << "outdata: ";
+	for (int i = 0; i < length; i++)
 	{
-		cout << "outdata: " << outdata[i];
+		cout << outdata[i] << endl;
 	}
 
 	//for (int i = 0; i < 7; i++)
