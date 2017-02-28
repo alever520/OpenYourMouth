@@ -3,6 +3,7 @@
 #include <iostream>
 #include<string>
 #include"wavelet.h"
+#include <fstream>
 
 using namespace std;
 int main()
@@ -21,19 +22,34 @@ int main()
 	//{
 	//	cout << out[i] << endl;
 	//}
-	readwav clc("7577.wav");
-	int length = 1000;
-	//int length = clc.getlength();
-	double* srcdata = clc.disp();
-	//double srcdata[] = { 420.2,423.53,423.52,423.35,424.52,428,430.79,428.92 };
+	/*int length = 68608;
+	double* srcdata = new double[length];
+	ifstream in("1101.txt");
+	for (int i = 0; i < length; i++)
+	{
+		in >> srcdata[i];
+	}
+	in.close();*/
+	double srcdata[] = { 420.2,423.53,423.52,423.35,424.52,428,430.79,428.92 };
+	int length = 8;
 	double* det = new double[(length + 4 - 1) / 2];
 	double* app = new double[(length + 4 - 1) / 2];
 	wavelet a;
 	a.wavedec(srcdata, length, det, app);
+	//int length2 = (length + 4 - 1) / 2;
+	//double* det2 = new double[(length2 + 4 - 1) / 2];
+	//double* app2 = new double[(length2 + 4 - 1) / 2];
+	//a.wavedec(app, length2, det2, app2);
 	double* outdata = new double[length];
 	a.wavecle(det, (length + 4 - 1) / 2);
-	//cout << a.getT(det, 5) << endl;
+	//cout << a.getT(det, (length + 4 - 1) / 2) << endl;
 	a.waverec(det, app, (length + 4 - 1) / 2, outdata);
+	ofstream out("1101_1.txt");
+	for (int i = 0; i < length; i++)
+	{
+		out << outdata[i] << endl;
+	}
+	out.close();
 	cout << "outdata: ";
 	for (int i = 0; i < length; i++)
 	{

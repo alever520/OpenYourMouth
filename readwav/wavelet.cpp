@@ -51,6 +51,12 @@ void wavelet::wavedec(double* srcdata, int dataLen,double* det,double* app)
 		det[j] = pre_det[i];
 		app[j] = pre_app[i];
 	}
+	//------------------输出测试----------------
+	cout << detLen << endl;
+	for (int i = 0; i < detLen; i++)
+	{
+		cout << det[i] << "  " << app[i] << endl;
+	}
 	delete[] pre_app;   //  释放空间
 	delete[] pre_det;
 	
@@ -78,12 +84,12 @@ void wavelet::waverec(double* det, double* app, int n,double* outdata)
 	}
 	up_det[2 * n] = up_app[2 * n] = 0.0; //  末位置零
 	//-----------------输出测试--------------
-	//cout << "up_det: ";
-	//for (int i = 0; i < upLen; i++)
-	//{
-	//	cout << up_det[i]<<" ";
-	//}
-	//cout << endl;
+	cout << "up_det: ";
+	for (int i = 0; i < upLen; i++)
+	{
+		cout << up_det[i]<<" ";
+	}
+	cout << endl;
 
 
 	//  延拓
@@ -111,12 +117,12 @@ void wavelet::waverec(double* det, double* app, int n,double* outdata)
 		}
 	}
 	//-----------------输出测试--------------
-	//cout << "exdet: ";
-	//for (int i = 0; i < exLen; i++)
-	//{
-	//	cout << exdet[i] << " ";
-	//}
-	//cout << endl;
+	cout << "exdet: ";
+	for (int i = 0; i < exLen; i++)
+	{
+		cout << exdet[i] << " ";
+	}
+	cout << endl;
 	delete[] up_det;
 	delete[] up_app;
 	//  做卷积
@@ -134,7 +140,7 @@ void wavelet::waverec(double* det, double* app, int n,double* outdata)
 			aft_det[i] += filter_HR[j] * exdet[i + k];  //   与高通滤波器做卷积
 			aft_app[i] += filter_LR[j] * exapp[i + k];  //   与低通滤波器做卷积
 		}
-		//cout << aft_det[i] << " " << aft_app[i] << endl;
+		cout << aft_det[i] << " " << aft_app[i] << endl;
 		outdata[j++] = aft_det[i] + aft_app[i];  //  高通与低通部分相加重构
 	}
 	delete[] exdet;
@@ -156,48 +162,12 @@ double wavelet::getT(double* det, int detLen)
 	//	cout << det[i]<<" ";
 	//}
 	//cout << endl;
-	if (detLen % 2 == 0)    //  偶数长度
-	{
-		double &temp1 = det[detLen / 2 - 1];
-		double &temp2 = det[detLen / 2];
-		//  成为前半段的最大值
-		for (int i = 0; i < detLen / 2; i++)
-		{
-			if (abs(temp1) > abs(temp2))
-				exchange(temp1, temp2);
-			if (det[i]>temp1 && det[i]<temp2)
-				exchange(det[i], temp1);
-			if (det[i] > temp2)
-				exchange(det[i], temp2);
-		}
-		//  成为后半段的最小值
-		for (int i = detLen / 2 + 1; i < detLen; i++)
-		{
-			if (det[i] < temp1)
-				exchange(temp1, det[i]);
-			if (det[i] > temp1 && det[i] < temp2)
-				exchange(temp2, det[i]);
-		}
-		sigma = (temp1 + temp2) / 2;
-	}
-	else   //  奇数长度
-	{
-		double &temp = det[detLen / 2];
-		for (int i = 0; i < detLen / 2; i++)
-		{
-			if (det[i] > temp)
-				exchange(det[i], temp);
-		}
-		for (int i = detLen / 2 + 1; i < detLen; i++)
-		{
-			if (det[i] < temp)
-				exchange(temp, det[i]);
-		}
-		sigma = temp;
-	}
-	cout << "sigma: " << sigma << endl;
+	
+	sort(det, det + detLen);
+	sigma = det[detLen / 2];
 	//  计算阈值 T
 	double T = sigma*sqrt(2 * log(detLen));
+	cout << "T: " << T << endl;
 	return T;
 }
 void wavelet::wavecle(double* det, int detLen)
@@ -210,6 +180,15 @@ void wavelet::wavecle(double* det, int detLen)
 			det[i] = 0.0;
 	}
 }
+/*void wavelet::wavecle(double* srcdata, int dataLen, int num, double* outdata)
+{
+	vector<vector<double>> det;
+	vector<vector<double>> app;
+	for(int i=0;i<num;i++)
+	{
+		wavedec(srcdata,dataLen,,)
+	}
+}*/
 void exchange(double &a, double &b)
 {
 	double temp;
