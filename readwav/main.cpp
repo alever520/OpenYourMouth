@@ -22,9 +22,9 @@ int main()
 	//{
 	//	cout << out[i] << endl;
 	//}
-	int length = 68608;
+	int length = 105472;
 	double* srcdata = new double[length];
-	ifstream in("1101.txt");
+	ifstream in("1103.txt");
 	for (int i = 0; i < length; i++)
 	{
 		in >> srcdata[i];
@@ -47,7 +47,7 @@ int main()
 	//cout << a.getT(det, (length + 4 - 1) / 2) << endl;
 	double* outdata = new double[length];
 	a.waverec(det, app, (length + 4 - 1) / 2, outdata);
-	ofstream out("D:\Program Files\MATLAB\workspace\1101_1.txt");
+	ofstream out("1103_1.txt");
 	for (int i = 0; i < length; i++)
 	{
 		out << outdata[i] << endl;

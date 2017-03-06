@@ -191,7 +191,7 @@ void wavelet::wavecle(double* det, int detLen,double T)
 			det[i] = 0.0;
 	}
 }
-void wavelet::wavecle(double* srcdata, int dataLen, int num, double* outdata)
+/*void wavelet::wavecle(double* srcdata, int dataLen, int num, double* outdata)
 {
 	vector<double*> app;
 	vector<double*> det;
@@ -218,7 +218,7 @@ void wavelet::wavecle(double* srcdata, int dataLen, int num, double* outdata)
 	//  重构部分
 	for(int )
 
-}
+}*/
 void exchange(double &a, double &b)
 {
 	double temp;

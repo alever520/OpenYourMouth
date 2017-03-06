@@ -112,6 +112,7 @@
   <ItemGroup>
     <ClCompile Include="dft.cpp" />
     <ClCompile Include="fft.cpp" />
+    <ClCompile Include="TXT2WAV.cpp" />
     <ClCompile Include="wavelet.cpp" />
     <ClCompile Include="hamming window.cpp" />
     <ClCompile Include="main.cpp" />
@@ -122,6 +123,7 @@
   <ItemGroup>
     <ClInclude Include="dft.h" />
     <ClInclude Include="fft.h" />
+    <ClInclude Include="TXT2WAV.h" />
     <ClInclude Include="wavelet.h" />
     <ClInclude Include="hamming window.h" />
     <ClInclude Include="readwav.h" />
