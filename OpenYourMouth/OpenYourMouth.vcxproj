@@ -117,7 +117,6 @@
     <ClCompile Include="hamming window.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="time_piece.cpp" />
-    <ClCompile Include="readwav.cpp" />
     <ClCompile Include="recognize.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -125,7 +124,6 @@
     <ClInclude Include="fft.h" />
     <ClInclude Include="wavread.h" />
     <ClInclude Include="hamming window.h" />
-    <ClInclude Include="readwav.h" />
     <ClInclude Include="recognize.h" />
     <ClInclude Include="time_piece.h" />
   </ItemGroup>
