@@ -36,10 +36,7 @@
     <ClCompile Include="hamming window.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
-    <ClCompile Include="wavelet.cpp">
-      <Filter>源文件</Filter>
-    </ClCompile>
-    <ClCompile Include="TXT2WAV.cpp">
+    <ClCompile Include="wavread.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
   </ItemGroup>
@@ -62,10 +59,7 @@
     <ClInclude Include="hamming window.h">
       <Filter>头文件</Filter>
     </ClInclude>
-    <ClInclude Include="wavelet.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
-    <ClInclude Include="TXT2WAV.h">
+    <ClInclude Include="wavread.h">
       <Filter>头文件</Filter>
     </ClInclude>
   </ItemGroup>

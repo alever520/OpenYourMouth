@@ -9,7 +9,7 @@ void recognize(double* data, double T, int freq, int length)
 {
 	int n = T*freq; // 每次变换的点数
 	int L = length / n; //变换的轮次数 也就是要做dft的片段数
-	int m = 2000 * T;
+	int m = 500 * T;
 	for (int i = 0; i < L; i++)
 	{
 		double* data_test = new double[n];
